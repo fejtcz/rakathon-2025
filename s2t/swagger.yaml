@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: Whisper API
+  description: API pro přepis zvukových souborů a správu přepisů.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Lokální server
+  - url: http://localhost:4000
+    description: Backend server
+
+paths:
+  /api/transcribe:
+    post:
+      summary: Přepis zvukového souboru
+      description: Přijímá zvukový soubor a metadata, spouští přepis a vrací výsledek.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+                  description: Zvukový soubor (.webm nebo .wav)
+                metadata:
+                  type: string
+                  description: Metadata ve formátu JSON (serializovaná jako string)
+                  example: '{"sessionId": "rakathon-2025-session-001", "userId": "dr.novak@nemocnice.cz"}'
+      responses:
+        '200':
+          description: Úspěšný přepis
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Přepis a data úspěšně zpracována a odeslána.
+                  translation:
+                    type: string
+                    example: Testovací zpráva, testovací zpráva
+        '500':
+          description: Chyba při zpracování
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Chyba při přepisu.
+
+  /api/store-transcription:
+    post:
+      summary: Přijetí dat z backendu
+      description: Přijímá zvukový soubor, překlad a metadata.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+                  description: Zvukový soubor
+                data:
+                  type: string
+                  description: JSON string obsahující překlad a metadata
+                  example: '{"translation": "Testovací zpráva", "metadata": {"processedAt": "2025-04-12T12:00:00.000Z", "fileSize": 123456, "sessionId": "rakathon-2025-session-001", "userId": "dr.novak@nemocnice.cz"}}'
+      responses:
+        '200':
+          description: Úspěšné přijetí dat
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Data úspěšně přijata.
+        '500':
+          description: Chyba při zpracování dat
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Chyba při zpracování dat.
