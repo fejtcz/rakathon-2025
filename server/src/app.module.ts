@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-console.log('heeej', __dirname)
 import { AuthModule } from './auth/auth.module';
 
 import { UsersModule } from './users/users.module';
@@ -14,7 +13,7 @@ import { SpecializationModule } from './specialization/specialization.module';
     PassportModule.register({ defaultStrategy: 'jwt' }),
     UsersModule,
     SpecializationModule,
-    AuthModule,
+    //AuthModule,
 
   ]
 })

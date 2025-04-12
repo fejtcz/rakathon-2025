@@ -1,8 +1,8 @@
-import { Column, ManyToMany, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, ManyToMany, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 //import { User } from '../users/user.entity';
 @Entity()
 export class Specialization {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   code: string;
 
   @Column()
