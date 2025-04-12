@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "8080:3006"
+    volumes:
+      - ./web:/app
+      - /app/node_modules # Skryje node_modules v hostu (aby se nepletly)
+    environment:
+      - NODE_ENV=development
+    command: [ "npm", "run", "dev", "--", "--host", "0.0.0.0" ]
