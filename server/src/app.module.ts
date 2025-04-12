@@ -6,6 +6,9 @@ import { UsersModule } from './users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { configService } from '../config/config.service';
 import { SpecializationModule } from './lists/specialization/specialization.module';
+import { DiagnosisModule } from './lists/diagnosis/diagnosis.module';
+import { ProceduresModule } from './lists/procedures/procedures.module';
+import { MdtModule } from './mdts/mdt.module';
 
 @Module({
   imports: [
@@ -13,8 +16,11 @@ import { SpecializationModule } from './lists/specialization/specialization.modu
     PassportModule.register({ defaultStrategy: 'jwt' }),
     UsersModule,
     SpecializationModule,
+    DiagnosisModule,
+    ProceduresModule,
+    MdtModule,
     //AuthModule,
-
+    
   ]
 })
 export class AppModule { }
