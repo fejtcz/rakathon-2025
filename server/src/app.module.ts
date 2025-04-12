@@ -13,6 +13,7 @@ import { CasesModule } from './cases/cases.module';
 import { MeetingsModule } from './meetings/meetings.module';
 import { RecordsModule } from './records/records.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { ClinicsModule } from './lists/clinics/clinics.module';
 
 
 @Module({
@@ -28,6 +29,7 @@ import { MulterModule } from '@nestjs/platform-express';
     CasesModule,
     MeetingsModule,
     RecordsModule,
+    ClinicsModule,
     MulterModule.registerAsync({
       useFactory: () => ({
         dest: './upload',
