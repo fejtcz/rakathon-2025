@@ -10,5 +10,3 @@ WORKDIR /app
 RUN npm install -g npm@11.3.0
 COPY package.json package-lock.json ./
 RUN npm install
-
-EXPOSE 5173
