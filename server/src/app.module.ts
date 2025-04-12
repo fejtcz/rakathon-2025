@@ -14,6 +14,8 @@ import { MeetingsModule } from './meetings/meetings.module';
 import { RecordsModule } from './records/records.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ClinicsModule } from './lists/clinics/clinics.module';
+import { ExamTypesModule } from './lists/examtypes/examtypes.module';
+import { ExaminationsModule } from './examinations/examinations.module';
 
 
 @Module({
@@ -30,6 +32,8 @@ import { ClinicsModule } from './lists/clinics/clinics.module';
     MeetingsModule,
     RecordsModule,
     ClinicsModule,
+    ExamTypesModule,
+    ExaminationsModule,
     MulterModule.registerAsync({
       useFactory: () => ({
         dest: './upload',
