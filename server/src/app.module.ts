@@ -19,8 +19,7 @@ import { MdtModule } from './mdts/mdt.module';
     DiagnosisModule,
     ProceduresModule,
     MdtModule,
-    //AuthModule,
-    
+    AuthModule,    
   ]
 })
 export class AppModule { }

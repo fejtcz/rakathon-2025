@@ -11,9 +11,11 @@ export class AuthService {
     
     async signIn(username: string, pass: string): Promise<any> {
 
-        const payload = { username: 'test', sub: 1 };
+        const payload = { username: 'test', id: 1 };
         return {
             access_token: await this.jwtService.signAsync(payload),
+            username: payload.username,
+            id: payload.id,
         };
     }
 }
