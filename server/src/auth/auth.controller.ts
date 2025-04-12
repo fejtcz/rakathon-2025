@@ -6,7 +6,8 @@ import {
   HttpStatus,
   Post,
   Request,
-} from '@nestjs/common';
+  
+ } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Public } from './decorators/public.decorator';
 
@@ -26,3 +27,4 @@ export class AuthController {
     return req.user;
   }
 }
+

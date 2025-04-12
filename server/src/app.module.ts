@@ -9,6 +9,9 @@ import { SpecializationModule } from './lists/specialization/specialization.modu
 import { DiagnosisModule } from './lists/diagnosis/diagnosis.module';
 import { ProceduresModule } from './lists/procedures/procedures.module';
 import { MdtModule } from './mdts/mdt.module';
+import { CasesModule } from './cases/cases.module';
+import { MeetingsModule } from './meetings/meetings.module';
+//import { RecordsModule } from './records/records.module';
 
 @Module({
   imports: [
@@ -20,6 +23,9 @@ import { MdtModule } from './mdts/mdt.module';
     ProceduresModule,
     MdtModule,
     AuthModule,    
+    CasesModule,
+    MeetingsModule,
+  //  RecordsModule,
   ]
 })
 export class AppModule { }
