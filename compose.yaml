@@ -12,6 +12,18 @@ services:
     environment:
       - NODE_ENV=development
     command: [ "npm", "run", "start:dev", "--", "--host", "0.0.0.0" ]
+  s2t:
+    build:
+      context: ./s2t
+      dockerfile: Dockerfile
+    container_name: S2T
+    depends_on:
+      - server
+    ports:
+      - "3010:3010"
+    volumes:
+      - ./s2t:/app
+    command: [ "node", "server" ]
   frontend:
     build:
       context: ./web
@@ -19,6 +31,7 @@ services:
     container_name: frontend
     depends_on:
       - server
+      - s2t
     ports:
       - "8080:3006"
     volumes:
