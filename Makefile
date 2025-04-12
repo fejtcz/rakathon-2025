@@ -6,3 +6,8 @@ dev_start:
 
 dev_stop:
 	$(FULL_COMMAND) down
+
+npmi:
+	$(COMPOSE_COMMAND) exec server npm install
+	$(COMPOSE_COMMAND) exec frontend npm install
+	make dev_stop && make dev_start
