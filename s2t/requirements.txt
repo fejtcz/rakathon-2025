@@ -1,1 +1,5 @@
 openai-whisper
+pyannote.audio
+torch
+numpy
+ffmpeg-python
