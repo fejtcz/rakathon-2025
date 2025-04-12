@@ -5,7 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { configService } from '../config/config.service';
-import { SpecializationModule } from './specialization/specialization.module';
+import { SpecializationModule } from './lists/specialization/specialization.module';
 
 @Module({
   imports: [

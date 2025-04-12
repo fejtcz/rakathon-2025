@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { Specialization } from 'src/specialization/specialization.entity';
+import { Specialization } from 'src/lists/specialization/specialization.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -16,9 +16,11 @@ export class User {
   
   @ManyToMany(() => Specialization)
   @JoinTable()
+  @ApiProperty({ type: () => Specialization, isArray: true, description: 'List of specializations' })
   specializations: Specialization[];
 
   @Column({default: true})
+  @ApiProperty({ example: true, description: 'Aktivovan ' })
   isActive: boolean;
 }
 
