@@ -16,8 +16,9 @@ export class RecordsService {
     record.uploadedById = createRecordDto.uploadedById;
     record.meetingId = createRecordDto.meetingId;
     record.timestamp = createRecordDto.timestamp;
-    //record.fileName = createRecordDto.fileName;
+    record.filename = createRecordDto.filename;
     record.transcription = createRecordDto.transcription;
+    record.caseId = createRecordDto.caseId;
     //record.name  = createRecordDto.name;
     //record.leaderId = createRecordDto.leaderId;
     //record.leader = createRecordDto.leader;
@@ -30,6 +31,12 @@ export class RecordsService {
     return this.recordRepository.find({ relations: { meeting: true } });
   }
 
+  async findByMeeting(meetingId: number): Promise<Record[]> {
+    return this.recordRepository.find({ where: { meetingId }, relations: { meeting: true } });
+  }
+  async findByCase(caseId: number): Promise<Record[]> {
+    return this.recordRepository.find({ where: { caseId }, relations: { meeting: true } });
+  }
   findOne(id: number): Promise<Record> {
     return this.recordRepository.findOne({
       where: { id }, 

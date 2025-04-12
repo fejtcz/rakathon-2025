@@ -21,3 +21,5 @@ npm-debug.log
 .env
 /.history
 package-lock.json
+/uploads
+test.wav
