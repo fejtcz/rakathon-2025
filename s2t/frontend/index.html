@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>🎤 Přepis řeči</title>
+</head>
+<body>
+  <h1>🎙️ Přepis řeči</h1>
+  <button id="start">Start</button>
+  <button id="stop" disabled>Zastavit</button>
+  <button id="load">📄 Načíst celý přepis</button>
+  <input type="file" id="uploadWav" accept="audio/wav">
+  <button id="sendWav">📁 Odeslat WAV</button>
+  <ul id="output"></ul>
+
+  <script>
+    let mediaRecorder;
+    let stream;
+    let chunks = [];
+    const output = document.getElementById("output");
+
+    const metadata = {
+      sessionId: "rakathon-2025-session-001",
+      sessionDate: new Date().toISOString(),
+      userId: "001"
+    };
+
+    document.getElementById("start").onclick = async () => {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
+      chunks = [];
+
+      mediaRecorder.ondataavailable = e => {
+        if (e.data.size > 0) chunks.push(e.data);
+      };
+
+      mediaRecorder.start();
+      document.getElementById("start").disabled = true;
+      document.getElementById("stop").disabled = false;
+    };
+
+    document.getElementById("stop").onclick = async () => {
+      mediaRecorder.onstop = async () => {
+        const blob = new Blob(chunks, { type: "audio/webm" });
+        const formData = new FormData();
+        formData.append("audio", blob, "recording.webm");
+        formData.append("metadata", JSON.stringify(metadata));
+
+        const res = await fetch("http://localhost:3010/api/transcribe", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+        const li = document.createElement("li");
+        li.textContent = data.text;
+        output.appendChild(li);
+      };
+
+      mediaRecorder.stop();
+      stream.getTracks().forEach(t => t.stop());
+      document.getElementById("start").disabled = false;
+      document.getElementById("stop").disabled = true;
+    };
+
+    document.getElementById("load").onclick = async () => {
+      const res = await fetch("http://localhost:3000/api/send-translation", {
+        method: "GET",
+      });
+      const data = await res.json();
+      const li = document.createElement("li");
+      li.textContent = `📜 Překlad: ${data.translation || "(prázdný)"}`;
+      output.appendChild(li);
+    };
+
+    document.getElementById("sendWav").onclick = async () => {
+      const file = document.getElementById("uploadWav").files[0];
+      if (!file) return alert("Vyberte WAV soubor.");
+      const formData = new FormData();
+      formData.append("audio", file);
+      formData.append("metadata", JSON.stringify(metadata));
+
+      const res = await fetch("http://localhost:3010/api/transcribe", {
+        method: "POST",
+        body: formData
+      });
+
+     /*const data = await res.json();
+      const li = document.createElement("li");
+      li.textContent = "📁 Výsledek WAV: " + data.text;
+      output.appendChild(li);*/
+    };
+  </script>
+</body>
+</html>
