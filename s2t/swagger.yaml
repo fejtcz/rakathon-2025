@@ -4,10 +4,10 @@ info:
   description: API pro přepis zvukových souborů a správu přepisů.
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:3010
     description: Lokální server
-  - url: http://localhost:4000
-    description: Backend server
+  - url: http://localhost:3000
+    description: Backend server (Luboš)
 
 paths:
   /api/transcribe:
