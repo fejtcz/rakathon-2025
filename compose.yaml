@@ -1,9 +1,24 @@
 services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules # Skryje node_modules v hostu (aby se nepletly)
+    environment:
+      - NODE_ENV=development
+    command: [ "npm", "run", "start:dev", "--", "--host", "0.0.0.0" ]
   frontend:
     build:
       context: ./web
       dockerfile: Dockerfile
     container_name: frontend
+    depends_on:
+      - server
     ports:
       - "8080:3006"
     volumes:
@@ -11,4 +26,5 @@ services:
       - /app/node_modules # Skryje node_modules v hostu (aby se nepletly)
     environment:
       - NODE_ENV=development
+      - VITE_API_URL=http://localhost:3000
     command: [ "npm", "run", "dev", "--", "--host", "0.0.0.0" ]
