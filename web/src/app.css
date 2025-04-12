@@ -5,3 +5,6 @@
 .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#f6ad55] text-[#2e2e2e] font-semibold text-base hover:bg-[#f7b766] hover:shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#f6ad55] transition-all duration-200;
 }
+.input {
+    @apply bg-[#3a3a3a] rounded px-3 py-2 border border-[#555] w-full;
+}
