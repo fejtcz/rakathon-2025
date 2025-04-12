@@ -18,6 +18,10 @@ export class User {
   @ApiProperty({ example: 'test@test.cz', description: 'E-mail' })
   email: string;
 
+  @Column({nullable: true})
+  @ApiProperty({ example: 'gravatar', description: 'Photo URL' })
+  photoUrl: string;
+
   @ManyToMany(() => Specialization)
   @JoinTable()
   @ApiProperty({ type: () => Specialization, isArray: true, description: 'List of specializations' })

@@ -17,6 +17,7 @@ import { ClinicsModule } from './lists/clinics/clinics.module';
 import { ExamTypesModule } from './lists/examtypes/examtypes.module';
 import { ExaminationsModule } from './examinations/examinations.module';
 import { LiveCallModule } from './livecall/livecall.module';
+import { TodosModule } from './todo/todo.module';
 
 
 @Module({
@@ -36,6 +37,7 @@ import { LiveCallModule } from './livecall/livecall.module';
     ExamTypesModule,
     ExaminationsModule,
     LiveCallModule,
+    TodosModule,
     MulterModule.registerAsync({
       useFactory: () => ({
         dest: './upload',
