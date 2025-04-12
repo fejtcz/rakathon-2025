@@ -18,6 +18,6 @@ npm-debug.log
 
 # dist
 /dist
+.env
 /.history
 package-lock.json
-.env
