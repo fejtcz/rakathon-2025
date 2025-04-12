@@ -11,7 +11,7 @@ import { ProceduresModule } from './lists/procedures/procedures.module';
 import { MdtModule } from './mdts/mdt.module';
 import { CasesModule } from './cases/cases.module';
 import { MeetingsModule } from './meetings/meetings.module';
-//import { RecordsModule } from './records/records.module';
+import { RecordsModule } from './records/records.module';
 
 @Module({
   imports: [
@@ -25,7 +25,7 @@ import { MeetingsModule } from './meetings/meetings.module';
     AuthModule,    
     CasesModule,
     MeetingsModule,
-  //  RecordsModule,
+    RecordsModule,
   ]
 })
 export class AppModule { }

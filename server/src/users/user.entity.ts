@@ -14,6 +14,10 @@ export class User {
   @ApiProperty({ example: 'Sedláček', description: 'Příjmení' })
   lastName: string;
   
+  @Column({nullable: true})
+  @ApiProperty({ example: 'test@test.cz', description: 'E-mail' })
+  email: string;
+
   @ManyToMany(() => Specialization)
   @JoinTable()
   @ApiProperty({ type: () => Specialization, isArray: true, description: 'List of specializations' })

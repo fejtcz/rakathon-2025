@@ -4,6 +4,7 @@ import { Case } from "../cases/case.entity";
 import { Mdt } from "../mdts/mdt.entity";
 import { Meeting } from "../meetings/meeting.entity";
 import { ApiProperty } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Entity()
 export class Record {
@@ -22,8 +23,9 @@ export class Record {
 
     @Column({ type: 'int', nullable: false })
     uploadedById: number;
+
     @ManyToOne(() => User, user => user.id)
-    @JoinColumn({ name: 'meetingId', referencedColumnName: 'id' })
+    @JoinColumn({ name: 'uploadedById', referencedColumnName: 'id' })
     uploadedBy: User;
 
     @Column({ type: 'json' })

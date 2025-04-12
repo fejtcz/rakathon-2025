@@ -17,6 +17,7 @@ export class CasesService {
     casex.surname  = createCaseDto.surname;
     casex.responsibleId = createCaseDto.responsibleId;
     casex.mdtId = createCaseDto.mdtId;
+    casex.regNumber = createCaseDto.regNumber;
     //case.leader = createCaseDto.leader;
     //case.members = createCaseDto.members;
 

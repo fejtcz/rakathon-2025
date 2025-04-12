@@ -30,7 +30,7 @@ export class MeetingsService {
   findOne(id: number): Promise<Meeting> {
     return this.meetingsRepository.findOne({
       where: { id }, 
-      relations: { cases: true, responsible: true, mdt: true } });
+      relations: { cases: true, responsible: true, mdt: true, guests: true, attended: true, notified: true, willAttend: true } });
   }
 
 //   async remove(id: string): Promise<void> {

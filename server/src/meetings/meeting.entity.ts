@@ -29,6 +29,22 @@ export class Meeting {
     @ManyToMany(() => Case)
     @JoinTable()
     cases: Case[];
+
+    @ManyToMany(() => User)
+    @JoinTable()
+    guests: User[];
+
+    @ManyToMany(() => User)
+    @JoinTable()
+    notified: User[];
+
+    @ManyToMany(() => User)
+    @JoinTable()
+    willAttend: User[];
+
+    @ManyToMany(() => User)
+    @JoinTable()
+    attended: User[];
     // @ManyToMany(() => Case, mdt => mdt.id)
     // @JoinColumn({ name: 'caseId', referencedColumnName: 'id' })
     // casesList: Case[];
