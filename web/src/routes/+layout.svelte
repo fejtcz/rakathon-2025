@@ -23,7 +23,7 @@
     <h1 class="text-xl font-semibold tracking-wide text-[#f6ad55]"><a href="/" >Kovia</a></h1>
     {#if userName}
     <div class="flex items-center gap-3">
-      <span class="hidden sm:inline text-gray-200">{userName}</span>
+      <span class="hidden sm:inline text-gray-200">Tlustý Programátor<br />(Case manager)</span>
       <div class="w-10 h-10 rounded-full bg-[#f6ad55] flex items-center justify-center text-[#2e2e2e] font-bold">
         👤
       </div>
