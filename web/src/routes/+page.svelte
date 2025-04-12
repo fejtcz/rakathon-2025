@@ -1,5 +1,6 @@
 <script>
-    const username = "Uživatel";
+import { apiFetch } from '$lib/api';
+import { redirect } from '@sveltejs/kit';
 </script>
 
 <div class="min-h-screen bg-[#2e2e2e] text-gray-100">
