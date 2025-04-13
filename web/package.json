@@ -25,6 +25,7 @@
 		"vite": "^6.2.5"
 	},
 	"dependencies": {
-		"dotenv": "^16.5.0"
+		"dotenv": "^16.5.0",
+		"livekit-client": "^2.11.2"
 	}
 }
