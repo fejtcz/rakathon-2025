@@ -46,7 +46,7 @@ app.post("/api/transcribe", upload.fields([
   const savedAudioPath = path.join(
     __dirname,
     "uploads",
-    `${timestamp}_${metadata.sessionId || "unknown"}.webm`
+    `${timestamp}_${metadata.meetingId || "unknown"}.webm`
   );
   
   try {
