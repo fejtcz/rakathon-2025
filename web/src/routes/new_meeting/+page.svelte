@@ -21,7 +21,7 @@
     const userDirectory = [
         {
             id: 1,
-            firstName: "Anna",
+            firstName: "MUDr. Anna",
             lastName: "Novotná",
             email: "",
             phone: "",
@@ -30,7 +30,7 @@
         },
         {
             id: 2,
-            firstName: "Tomáš",
+            firstName: "MUDr. Tomáš",
             lastName: "Bartoš",
             email: "",
             phone: "",
@@ -39,7 +39,7 @@
         },
         {
             id: 3,
-            firstName: "Lucie",
+            firstName: "MUDr. Lucie",
             lastName: "Krejčí",
             email: "",
             phone: "",
@@ -48,7 +48,7 @@
         },
         {
             id: 4,
-            firstName: "Petr",
+            firstName: "MUDr. Petr",
             lastName: "Svoboda",
             email: "",
             phone: "",
@@ -57,7 +57,7 @@
         },
         {
             id: 5,
-            firstName: "Eva",
+            firstName: "MUDr. Eva",
             lastName: "Dvořáková",
             email: "",
             phone: "",
@@ -66,7 +66,7 @@
         },
         {
             id: 6,
-            firstName: "Jan",
+            firstName: "MUDr. Jan",
             lastName: "Král",
             email: "",
             phone: "",
@@ -75,7 +75,7 @@
         },
         {
             id: 7,
-            firstName: "Jana",
+            firstName: "MUDr. Jana",
             lastName: "Černá",
             email: "",
             phone: "",
@@ -84,7 +84,7 @@
         },
         {
             id: 8,
-            firstName: "Martin",
+            firstName: "MUDr. Martin",
             lastName: "Novák",
             email: "",
             phone: "",
@@ -93,7 +93,7 @@
         },
         {
             id: 9,
-            firstName: "Kateřina",
+            firstName: "MUDr. Kateřina",
             lastName: "Horáková",
             email: "",
             phone: "",
@@ -102,7 +102,7 @@
         },
         {
             id: 10,
-            firstName: "David",
+            firstName: "MUDr. David",
             lastName: "Procházka",
             email: "",
             phone: "",
@@ -111,7 +111,7 @@
         },
         {
             id: 11,
-            firstName: "Petra",
+            firstName: "MUDr. Petra",
             lastName: "Novotná",
             email: "",
             phone: "",
@@ -120,7 +120,7 @@
         },
         {
             id: 12,
-            firstName: "Jakub",
+            firstName: "MUDr. Jakub",
             lastName: "Beneš",
             email: "",
             phone: "",
@@ -129,7 +129,7 @@
         },
         {
             id: 13,
-            firstName: "Tereza",
+            firstName: "MUDr. Tereza",
             lastName: "Kovářová",
             email: "",
             phone: "",
@@ -138,7 +138,7 @@
         },
         {
             id: 14,
-            firstName: "Václav",
+            firstName: "MUDr. Václav",
             lastName: "Čech",
             email: "",
             phone: "",
@@ -147,7 +147,7 @@
         },
         {
             id: 15,
-            firstName: "Barbora",
+            firstName: "MUDr. Barbora",
             lastName: "Fialová",
             email: "",
             phone: "",
@@ -156,7 +156,7 @@
         },
         {
             id: 16,
-            firstName: "Filip",
+            firstName: "MUDr. Filip",
             lastName: "Havlíček",
             email: "",
             phone: "",
@@ -204,8 +204,55 @@
             extraNotes,
         };
 
-        console.log("Naplánovaná schůzka:", payload);
+        
     }
+
+    type Vysetreni = {
+        metoda: string;
+        datum: string;
+        misto: string;
+        vysledek: string;
+    };
+
+    let vysetreniAVykony: Vysetreni[] = [];
+
+    function pridejVysetreni() {
+        vysetreniAVykony = [
+            ...vysetreniAVykony,
+            { metoda: "", datum: "", misto: "", vysledek: "" },
+        ];
+    }
+
+    type Otazka = {
+        komu: string;
+        text: string;
+    };
+
+    let otazky: Otazka[] = [];
+
+    const lekari = [
+        "MUDr. Novák",
+        "MUDr. Svobodová",
+        "MUDr. Dvořák",
+        "MUDr. Křížová",
+        "MUDr. Marek",
+    ];
+
+    function pridejOtazku() {
+        otazky = [...otazky, { komu: "", text: "" }];
+    }
+
+    type Ukol = {
+    komu: string;
+    popis: string;
+    termin: string;
+  };
+
+  let ukolList: Ukol[] = [];
+
+  function pridejUkol() {
+    ukolList = [...ukolList, { komu: "", popis: "", termin: "" }];
+  }
 </script>
 
 <div
@@ -306,36 +353,132 @@
             />
         </div>
 
-        <!-- Poznámky -->
-        <div>
-            <label class="block mb-2 text-lg"
-                >Volitelné poznámky (max. 10)</label
-            >
-            {#each extraNotes as note, i}
-                <div class="flex items-start gap-2 mb-2">
-                    <textarea
-                        bind:value={extraNotes[i]}
-                        rows="2"
-                        class="flex-1 rounded bg-[#3b3b3b] border border-[#555] text-white px-3 py-2"
-                    />
-                    <button
-                        type="button"
-                        on:click={() => removeNote(i)}
-                        class="text-sm text-red-400 mt-1 hover:underline"
-                        >✕</button
-                    >
-                </div>
-            {/each}
-            {#if extraNotes.length < 10}
-                <button
-                    type="button"
-                    on:click={addNote}
-                    class="bg-[#f6ad55] text-black font-semibold px-4 py-1 rounded hover:bg-opacity-90 transition"
+     <div>
+        <h3 class="text-xl font-semibold">Epikríza pacienta</h3>
+        <textarea
+            rows="4"
+            class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+        ></textarea>
+    </div>
+    <div>
+        <h3 class="text-xl font-semibold">Poznámka</h3>
+        <textarea
+            rows="4"
+            class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+        ></textarea>
+    </div>
+
+    <div class="space-y-4">
+        <h3 class="text-xl font-semibold">Relevantní vyšetření a výkony</h3>
+
+        {#each vysetreniAVykony as vysetreni, i}
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                <input
+                    type="text"
+                    placeholder="Zobrazovací metoda"
+                    bind:value={vysetreni.metoda}
+                    class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+                />
+                <input
+                    type="date"
+                    bind:value={vysetreni.datum}
+                    class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+                />
+                <input
+                    type="text"
+                    placeholder="Místo provedení"
+                    bind:value={vysetreni.misto}
+                    class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+                />
+                <input
+                    type="text"
+                    placeholder="Výsledek vyšetření"
+                    bind:value={vysetreni.vysledek}
+                    class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+                />
+            </div>
+        {/each}
+
+        <button
+            type="button"
+            on:click={pridejVysetreni}
+            class="bg-[#f6ad55] text-black px-4 py-2 rounded hover:bg-opacity-90 transition"
+        >
+            + Přidat vyšetření
+        </button>
+    </div>
+
+    <div class="space-y-4">
+        <h3 class="text-xl font-semibold">Otázky na MDT</h3>
+
+        {#each otazky as otazka, i}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <select
+                    bind:value={otazka.komu}
+                    class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
                 >
-                    Přidat poznámku
-                </button>
-            {/if}
-        </div>
+                    <option disabled selected value="">Vyber lékaře</option>
+                    {#each lekari as lekar}
+                        <option>{lekar}</option>
+                    {/each}
+                </select>
+
+                <textarea
+                    bind:value={otazka.text}
+                    placeholder="Text otázky"
+                    class="w-full md:col-span-2 px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+                    rows="2"
+                ></textarea>
+            </div>
+        {/each}
+
+        <button
+            type="button"
+            on:click={pridejOtazku}
+            class="bg-[#f6ad55] text-black px-4 py-2 rounded hover:bg-opacity-90 transition"
+        >
+            + Přidat otázku
+        </button>
+    </div>
+
+    <div class="space-y-4">
+  <h3 class="text-xl font-semibold">Úkoly další péče</h3>
+
+  {#each ukolList as ukol, i}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <select
+        bind:value={ukol.komu}
+        class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+      >
+        <option disabled selected value="">Vyber lékaře</option>
+        {#each lekari as lekar}
+          <option>{lekar}</option>
+        {/each}
+      </select>
+
+      <input
+        type="text"
+        placeholder="Popis úkolu"
+        bind:value={ukol.popis}
+        class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+      />
+
+      <input
+        type="date"
+        bind:value={ukol.termin}
+        class="w-full px-3 py-2 rounded border border-[#555] bg-[#3a3a3a] text-white"
+      />
+    </div>
+  {/each}
+
+  <button
+    type="button"
+    on:click={pridejUkol}
+    class="bg-[#f6ad55] text-black px-4 py-2 rounded hover:bg-opacity-90 transition"
+  >
+    + Přidat úkol
+  </button>
+</div>
 
         <!-- Submit -->
         <div class="text-right pt-4">
