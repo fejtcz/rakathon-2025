@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-
 import { UsersModule } from './users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { configService } from '../config/config.service';
@@ -19,6 +18,7 @@ import { ExaminationsModule } from './examinations/examinations.module';
 import { LiveCallModule } from './livecall/livecall.module';
 import { TodosModule } from './todo/todo.module';
 
+import { TasksModule } from './daemons/tasks.module';
 
 @Module({
   imports: [
@@ -38,6 +38,7 @@ import { TodosModule } from './todo/todo.module';
     ExaminationsModule,
     LiveCallModule,
     TodosModule,
+    TasksModule, // modul s démonem
     MulterModule.registerAsync({
       useFactory: () => ({
         dest: './upload',
