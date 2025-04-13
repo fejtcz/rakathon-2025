@@ -3,3 +3,4 @@ pyannote.audio
 torch
 numpy
 ffmpeg-python
+python-dotenv
