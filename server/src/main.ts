@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors(); 
   const options = new DocumentBuilder()
-    .setTitle('Kovio')
+    .setTitle('Kovia')
     .setDescription('Popis API pro všechny API endpointy')
     .setVersion('1.0')
     .addTag('kontinuum')
