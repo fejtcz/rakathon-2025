@@ -131,7 +131,12 @@ app.post("/api/transcribe", upload.fields([
       console.log("Data úspěšně odeslána na backendový endpoint:", backendResponse.data);     
   
       // Odpověď klientovi
-      return res.json({ message: "Přepis a data úspěšně zpracována a odeslána.", fullTranscription });
+      //return res.json({ message: "Přepis a data úspěšně zpracována a odeslána.", fullTranscription });
+      // Vrácení odpovědi zpět do frontendu
+      res.json({
+        message: "Přepis dokončen.",
+        transcription: backendResponse.data.transcription
+      });
     } catch (err) {
       console.error("Chyba při odesílání dat:", err.message);
       return res.status(500).json({ error: "Chyba při odesílání dat." });

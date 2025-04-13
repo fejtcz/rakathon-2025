@@ -8,6 +8,15 @@ import tempfile
 import io
 import time
 import json
+from dotenv import load_dotenv
+
+model_use = "large"
+
+# Načtení proměnných z .env souboru
+load_dotenv()
+
+# Získání hodnoty use_auth_token z prostředí
+use_auth_token = os.getenv("USE_AUTH_TOKEN")
 
 # Korektní výpis v UTF-8 i na Windows
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -42,12 +51,12 @@ else:
     tmp_path = input_file
 
 # Načtení modelu Whisper
-model = whisper.load_model("large")
+model = whisper.load_model(model_use)
 
 # Načtení modelu pro diarizaci z Hugging Face
 pipeline = Pipeline.from_pretrained(
     "pyannote/speaker-diarization-3.1",
-    use_auth_token="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"
+    use_auth_token=use_auth_token
 )
 
 # Přesun pipeline na GPU, pokud je dostupné
